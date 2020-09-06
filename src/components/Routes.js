@@ -1,6 +1,6 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom";
-import LoginStudent from "./LoginStudent"
+import Login from "./Login"
 
 
 const Routes = () => {
@@ -9,8 +9,8 @@ const Routes = () => {
             <Switch>
                 <Route
                     exact
-                    path="/login-student"
-                    render={(routerProps) => <LoginStudent history={routerProps.history} />}
+                    path="/login"
+                    render={(routerProps) => <Login history={routerProps.history} />}
                 >    
                 </Route>
             </Switch>

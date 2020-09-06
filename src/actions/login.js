@@ -1,6 +1,6 @@
 import {BASE_URL, LOGIN_STUDENT, FAILED_LOGIN} from "./types"
 
-export const loginStudent = (formData, ownProps) => {
+export const login = (formData, ownProps) => {
     return (dispatch) => {
         return fetch(`${BASE_URL}/api/v1/login`, {
           method: "POST",
@@ -13,28 +13,28 @@ export const loginStudent = (formData, ownProps) => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            if (data.status == 200){
+            if (data.status === 200){
               dispatch(
                 {
                   type: LOGIN_STUDENT,
                   user: data.user.data.attributes,
                 },
               )
-            } else if (data.status == 500){
+            } else if (data.status === 500){
               dispatch(
                 {
                   type: FAILED_LOGIN,
                   passwordError: data.passwordError
                 },
-                ownProps.history.push("/login-student")
+                ownProps.history.push("/login")
               );
-            } else if (data.status == 501){
+            } else if (data.status === 501){
               dispatch(
                 {
                   type: FAILED_LOGIN,
                   emailError: data.email_error[0]
                 },
-                ownProps.history.push("/login-student")
+                ownProps.history.push("/login")
               );
             }
           });
